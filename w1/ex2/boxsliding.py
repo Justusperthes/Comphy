@@ -40,16 +40,13 @@ x_init = 30 - y_init/dydx
 print(x_init)
 init_conditions = [x_init, y_init]
 
-sol = solve_ivp(ramp_system, trange, init_conditions, max_step=0.001, events=stop_at_x_30)
+sol = solve_ivp(ramp_system, trange, init_conditions, max_step=0.05, events=stop_at_x_30)
 ts = sol.t
 xs = sol.y[0]
 ys = sol.y[1]
 t_event = sol.t_events[0][0]
 
-print(f'Time taken to reach the end of the ramp: {t_event} seconds')
-
-print(f'xs: {xs}')
-print(f'ys: {ys}')
+print(f'Time taken to reach end of ramp: {t_event} seconds')
 
 plt.rc('font', size=16)
 fig, ax = plt.subplots(1, 1)
@@ -67,10 +64,10 @@ ramp, = ax.plot(xs, ys, 'b-')
 
 def update(frame):
     data = np.array([[xs[frame], ys[frame]]])
-    ax.set_xlim(0,40)
-    ax.set_ylim(-10, 30)
+    box.set_data([xs[frame]],[ys[frame]])
     return [box]
 
-anim = animation.FuncAnimation(fig, update, frames=len(ts), interval=50, blit=True)
-anim.save('sliding_box.gif', writer=PillowWriter(fps=10))
+anim = animation.FuncAnimation(fig, update, frames=range(0, len(ts), 2), interval=50, blit=True)
+anim.save('sliding_box.gif', writer=PillowWriter(fps=200))
+
 plt.close()

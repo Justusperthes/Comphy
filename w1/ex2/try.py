@@ -1,25 +1,34 @@
-from scipy.integrate import solve_ivp
+import numpy as np
 import matplotlib.pyplot as plt
-
-tinit = 0
-tfinal = 20
-trange = [tinit,tfinal]
-yinit = [1,-1]
-
-dydt = lambda t, y: [y[1],-y[0]-1/10*y[1]]
-mysol = solve_ivp(dydt, trange, yinit)
-ts = mysol.t
-y0s = mysol.y[0]
-y1s = mysol.y[1]
-
+from matplotlib import animation
+from matplotlib.animation import PillowWriter
 plt.rc('font', size=16)
 
-fig, ax = plt.subplots()
-ax.plot(ts,y0s,linestyle='dashed',marker='o')
-ax.plot(ts,y1s,linestyle='dashed',marker='x')
-ax.set_xlabel('$t$')
-ax.set_ylabel('$y$')
-ax.legend(['$y_0$','$y_1$'])
+N = 101
+xs = np.linspace(0,90,N)
+ys = (100-((xs+10)%20-10)**2) * np.exp(-xs/30)
+xs = xs * np.exp(-xs/200)
 
-
+fig, ax = plt.subplots(figsize=(4, 6))
+ax.axis('equal')
+ax.plot(xs,ys)
 plt.savefig('try.png')
+plt.close()
+
+
+plt.rc('animation', html='jshtml')
+
+ball = ax.plot([],[],'ro')[0]
+
+def update(i):
+    ball.set_data([xs[i]], [ys[i]])
+    return [ball]
+
+
+anim = animation.FuncAnimation(fig,
+                               update,
+                               frames=N,
+                               interval=10,
+                               blit=True)
+anim.save('try.gif', writer=PillowWriter(fps=10))
+plt.close()
