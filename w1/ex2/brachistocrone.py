@@ -45,3 +45,9 @@ plt.legend()
 plt.grid(True)
 plt.savefig('brachistochrone.png')
 plt.close()
+
+# y and dydx as functions of x
+def func(x):
+    
+    return y
+
