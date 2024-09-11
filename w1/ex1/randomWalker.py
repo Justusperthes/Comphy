@@ -7,10 +7,10 @@ from matplotlib.animation import PillowWriter
 
 plt.rc('animation', html='jshtml') #something to do with with jupyter notebooks, I think
 
-N = 50 #number of points
+N = 5 #number of particles
 highlighted_dots = 5
 delta_d = 1 #magnitude of DeltaP
-steps = 100 #number of iterations in walk
+steps = 2 #number of iterations in walk
 
 # initial 2d array at origin
 P_start = np.zeros((N,2))
@@ -35,7 +35,7 @@ colors = [blue_color] * N_blue + [red_color] * N_red
 points_in_time = []
 
 # whatever needs to be done at step j
-for j in range(1, steps + 1):
+for step in range(0, steps + 1):
     # array of angles
     random_number = np.random.uniform()
     low, high = 0, 2*np.pi
@@ -52,20 +52,19 @@ for j in range(1, steps + 1):
     distances = np.sqrt(P_end[:, 0]**2+P_end[:, 1]**2)
 
     #distances of each walker from origin
-    rms_distances[j] = np.sqrt(np.mean(distances**2))
+    rms_distances[step] = np.sqrt(np.mean(distances**2))
 
     #init list to store positions for the step j
     points = []
 
     # at a particular step (j), do the stuff to every walker (i)
-    for i in range(N):
-        start = P_start[i, 0]
-        end = P_end[i, 0]
+    for walker in range(N):
+        start = P_start[walker, 0]
+        end = P_end[walker, 0]
         x_values = [start,end]
         y_values = [start,end]
         plt.plot(x_values, y_values, marker='o')
-        points.append([P_end[i, 0], P_end[i, 1]])
-    
+        points.append([P_end[walker, 0], P_end[walker, 1]])
     
     points_in_time.append(points)
 
@@ -76,7 +75,7 @@ plt.title(f"Paths of {N} {steps}-step walks from origin")
 plt.xlabel("X-axis")
 plt.ylabel("Y-axis")
 plt.grid(True)
-plt.savefig('plot1.png')
+plt.savefig('plot1alt.png')
 plt.close()
 
 # plot2.png
@@ -86,7 +85,7 @@ plt.title(f"End points of {N} {steps}-step walks from origin")
 plt.xlabel("X-axis")
 plt.ylabel("Y-axis")
 plt.grid(True)
-plt.savefig('plot2.png')
+plt.savefig('plot2alt.png')
 plt.close()
 
 # plot3: RMS distance vs time
@@ -96,7 +95,7 @@ plt.title("RMS distance from origin vs time steps")
 plt.xlabel("Time Steps")
 plt.ylabel("RMS Distance")
 plt.grid(True)
-plt.savefig('rms_distance.png')
+plt.savefig('rms_distancealt.png')
 plt.close()
 
 # create figure for animation
@@ -123,6 +122,6 @@ def update(frame):
 anim = animation.FuncAnimation(fig, update, frames=range(steps), interval=100, blit=True)
 
 # GIF
-anim.save('random_walk_animation.gif', writer=PillowWriter(fps=10))
+anim.save('random_walk_animation_alt.gif', writer=PillowWriter(fps=10))
 
 plt.close()
