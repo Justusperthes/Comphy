@@ -1,5 +1,6 @@
 # Ignore the lib folder
 myenv
+w1/ex3/venv/Lib/
 
 # Ignore Python compiled files
 __pycache__/
