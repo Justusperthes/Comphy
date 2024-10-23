@@ -1,0 +1,16 @@
+# Ignore the lib folder
+lib/
+
+# Ignore Python compiled files
+__pycache__/
+*.py[cod]
+
+# Ignore virtual environment directories
+myenv/
+.venv/
+
+# Ignore data and log files
+*.log
+*.csv
+*.h5
+*.pt
