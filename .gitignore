@@ -1,5 +1,6 @@
 # Ignore the lib folder
-lib/
+myenv/lib/
+myenv/lib64/
 
 # Ignore Python compiled files
 __pycache__/
