@@ -3,13 +3,14 @@ import numpy as np
 from matplotlib.colors import Normalize
 
 # Number of exercises per week
-exercises_per_week = [5, 5, 7, 6, 5, 7, 5, 7, 3, 4]
+exercises_per_week = [5, 5, 7, 6, 5, 7, 5, 7, 3, 4, 2]
 
 # Progress data (values between 0 and 1 to represent partial to full completion)
 progress = [
     [0.8, 0.8, 1, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], 
     [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0, 0], 
-    [0, 0, 0, 0, 0], [1, 1, 1, 1, 1, 1, 0], [0.9, 1, 0], [0, 0, 0, 0]
+    [0, 0, 0, 0, 0], [1, 1, 1, 1, 1, 1, 0], [0.9, 1, 0], [0, 0, 0, 0],
+    [0, 0]
 ]
 
 # Adjust the size of the array for plotting
