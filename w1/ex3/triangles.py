@@ -26,8 +26,8 @@ class Triangle:
     def set_edge_points(self, edge_points):
         self.edge_points = edge_points
     
-    # def move(r):
-    #     #move the triangle r = vec(r)
+    def move(r):
+        r = vec(r)
 
     # getter methods
     def get_color(self):
@@ -76,3 +76,10 @@ print(my_triangle.get_edges())
 print(my_other_triangle.get_edges())
 
 my_other_triangle.draw()
+
+P1 = np.array([2,1])
+P2 = np.array([4,3])
+P3 = np.array([1,4])
+points = np.array([P1,P2,P3])
+t = Triangle(points)
+t.draw()
