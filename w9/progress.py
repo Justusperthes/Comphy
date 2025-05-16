@@ -4,10 +4,10 @@ from matplotlib.colors import Normalize
 
 # Progress data (values between 0 and 1 to represent partial to full completion)
 progress = [
-    [0.8, 0.8, 1, 0, 0], [0.75, 0.5, 1, 1, 0], [0.8, 1, 1, 1, 1, 0, 0], 
-    [1, 1, 1, 0.33333, 0, 0], [1, 0.75, 0, 0, 0], [1, 0.8, 0, 0, 0, 0, 0], 
+    [0.8, 0.8, 1, 0, 0], [1, 1, 1, 1, 1], [0.8, 1, 1, 1, 1, 0, 1], 
+    [1, 1, 1, 1, 1, 0], [1, 1, 1, 0, 0], [1, 1, 1, 0.5, 0, 0, 1], 
     [0.75, 0.33, 0.25, 0, 0], [1, 1, 1, 1, 1, 1, 0], [0.9, 1, 1], [0.9, 1, 1, 0.5],
-    [1, 0.4, 0.6, 0], [1, 1, 5.5/6], [4/9, 0.7], [0,0,0,0] 
+    [1, 0.4, 0.6, 0], [1, 1, 5.5/6], [8/9, 6/10], [0,0,0,0] 
 ]
 
 exercises_per_week = []
@@ -51,3 +51,4 @@ plt.title('Computational Physics Progress')
 plt.ylabel('Weeks')
 
 plt.show()
+
